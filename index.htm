@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CryptoTracker</title>
+    <link rel="stylesheet" href="dojichart.min.css"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      .box {
+        width: 360px;
+        border: 6px solid #ddd;
+        border-radius: 6px;
+      }
+    </style>
+    <script type="text/javascript" src="dojichart.min.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <div class="dojichart" id="my-chart">
+        <div class="region" data-name="timelabels"></div>
+        <div class="region" data-name="price"></div>
+        <div class="region" data-name="volume"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="CryptoTracker.js"></script>
+  </body>
+</html>
