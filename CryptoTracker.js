@@ -114,3 +114,10 @@ function updateChart(){
 
 updateChart();
 setInterval(updateChart, 1*60*1000);
+
+$("#btn-bak").click(function(){
+    dojichart.scroll(dojichart.getOffset() - 10, "false");
+})
+$("#btn-fwd").click(function(){
+    dojichart.scroll(dojichart.getOffset() + 10, "false");
+})

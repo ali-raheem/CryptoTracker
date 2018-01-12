@@ -1,4 +1,4 @@
-# CryptoTracker v0.0.3 GPLv3
+# CryptoTracker v0.0.4 GPLv3
 
 Simple HTML5/Javascript cryptoportfolio tracker, pulls data from Poloniex.com public API and charts it.
 
@@ -20,3 +20,4 @@ $ python -m SimpleHTTPServer
 * Python
 * [JQuery](http://jquery.com/) using 3.2.1 hosted via Googleapis.com
 * [DojiChart](http://dojichart.com/)
+
