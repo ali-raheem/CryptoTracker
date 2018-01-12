@@ -1,4 +1,4 @@
-myChart = new DojiChart.core.Chart(document.getElementById('my-chart'), {
+dojichart = new DojiChart.core.Chart(document.getElementById('my-chart'), {
     width: 700,
     fieldMap: {
         time: 'time',
@@ -9,38 +9,107 @@ myChart = new DojiChart.core.Chart(document.getElementById('my-chart'), {
         volume: 'volume'
     }
 });
-candle_layer = new DojiChart.layer.CandleLayer({});
-price_chart_panel = new DojiChart.panel.TimeValuePanel({
-    primaryLayer: candle_layer,
-    height: 250,
-    grid: true    
+// Price
+var price_chart_panel = new DojiChart.panel.TimeValuePanel({
+  primaryLayer: new DojiChart.layer.CandleLayer({}),
+  height: 200,
+  grid: true
 });
-sma_layer = new DojiChart.layer.indicator.SimpleMovingAverageLayer({
-    period: 5
+
+dojichart.addComponent("price", price_chart_panel);
+
+// SMA 200
+var sma200_layer = new DojiChart.layer.indicator.SimpleMovingAverageLayer({
+  period: 200,
+  color: "blue"
 });
-price_chart_panel.addLayer(sma_layer);
+price_chart_panel.addLayer(sma200_layer);
 
-myChart.addComponent("price", price_chart_panel);
+// SMA 50
+var sma50_layer = new DojiChart.layer.indicator.SimpleMovingAverageLayer({
+  period: 50,
+  color: "orange"
+});
+price_chart_panel.addLayer(sma50_layer);
 
-time_labels_panel = new DojiChart.panel.TimeLabelsPanel();
-myChart.addComponent("timelabels", time_labels_panel);
+// EMA 10
+var ema10_layer = new DojiChart.layer.indicator.ExponentialMovingAverageLayer({
+  period: 10,
+  color: "fuchsia"
+});
+price_chart_panel.addLayer(ema10_layer);
 
-volume_layer = new DojiChart.layer.indicator.VolumeLayer({
+// Bollinger Bands
+var bb_layer = new DojiChart.layer.indicator.BollingerBandsLayer({
+  midColor: "rgba(0, 128, 0, 0.4)",
+  bandColor: "rgba(0, 0, 0, 0.3)" 
+});
+price_chart_panel.addLayer(bb_layer);
+
+// Volume profile
+var volume_profile_layer = new DojiChart.layer.indicator.VolumeProfileLayer({
+});
+price_chart_panel.addLayer(volume_profile_layer);
+
+// Time labels (at top of chart)
+var time_labels_panel = new DojiChart.panel.TimeLabelsPanel();
+dojichart.addComponent("timelabels", time_labels_panel);
+
+// Volume panel
+var volume_chart_panel = new DojiChart.panel.TimeValuePanel({
+  height: 100,
+  primaryAtBack: true,
+  primaryLayer: new DojiChart.layer.indicator.VolumeLayer({
+    layerIndex: 1,
     barColor: "#3377FF",
     barWidth: 5
+  })
 });
-volume_chart_panel = new DojiChart.panel.TimeValuePanel({
-    height: 100,
-    primaryLayer: volume_layer    
-});
-myChart.addComponent("volume", volume_chart_panel);
 
-console.log(poloData);
+dojichart.addComponent("volume", volume_chart_panel, true);
+
+// Volume EMA 65
+var ema65_layer = new DojiChart.layer.indicator.ExponentialMovingAverageLayer({
+  layerIndex: 2,
+  input: "volume",
+  period: 65,
+  color: "black"
+});
+volume_chart_panel.addLayer(ema65_layer);
+
+// Stochastic panel
+var stochastic_chart_panel = new DojiChart.panel.TimeValuePanel({
+  height: 68,
+  grid: {
+    value: {
+      lines: [20, 50, 80]
+    }
+  },
+  primaryLayer: new DojiChart.layer.indicator.StochasticLayer({
+  })
+});
+
+dojichart.addComponent("stochastic", stochastic_chart_panel, true);
+
+// RSI panel
+var rsi_chart_panel = new DojiChart.panel.TimeValuePanel({
+  height: 68,
+  grid: {
+    value: {
+      lines: [30, 70]
+    }
+  },
+  primaryLayer: new DojiChart.layer.indicator.RSILayer({
+  })
+});
+
+dojichart.addComponent("rsi", rsi_chart_panel, true);
+
 function updateChart(){
     var i;
     for(i = 0; i < poloData.length; i++){
     }
-    myChart.loadData(poloData, "Poloniex.com", 'M5');    
+    dojichart.loadData(poloData, "Poloniex.com", 'M5');    
 }
 
 updateChart();
