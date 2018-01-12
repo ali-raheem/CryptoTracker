@@ -6,7 +6,7 @@ def time2ISO(time):
 
 currencyPair = "BTC_XMR"
 endTime = int(time())
-startTime = endTime - 12*60*60
+startTime = endTime - 24*60*60
 
 poloApi = "https://poloniex.com/public?command=returnChartData&currencyPair={}&start={}&end={}&period=300".format(currencyPair, startTime, endTime)
 print(poloApi)

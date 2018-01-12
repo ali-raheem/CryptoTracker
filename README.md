@@ -2,6 +2,8 @@
 
 Simple HTML5/Javascript cryptoportfolio tracker, pulls data from Poloniex.com public API and charts it.
 
+You can see a [demo here](https://wolfmankurd.github.io/CryptoTracker) however github data will not be dynamically updated like running your own version will be.
+
 # Running
 
 Run getPoloData.py to update data. Perhaps add it to cron to run 5mins?
