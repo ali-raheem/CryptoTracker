@@ -1,0 +1,93 @@
+.dojichart {
+    position: relative;
+    width: 100%;
+    
+}
+
+.dojichart .region {
+    position: relative;
+    box-sizing: border-box;
+    
+}
+
+.dojichart .component {
+    box-sizing: border-box;
+    
+}
+
+.dojichart canvas {
+    display: block;
+    background-color: transparent;
+    cursor: crosshair;
+    
+}
+
+.dojichart canvas.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+    
+}
+
+/* IE11+ */
+
+.dojichart canvas.crosshair {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    
+}
+.chart-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: 6px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+          
+}
+.chart-container .dojichart {
+          
+}
+.chart-container .region {
+    border-top: 1px solid #ccc;
+          
+}
+.chart-container .region:first-child {
+    border-top: none;
+          
+}
+.chart-container .region[data-name=timelabels] {
+    background-color: #ddd;
+          
+}
+.toolset {
+    margin: 1em 0;
+    text-align: center;
+          
+}
+.buttonset {
+    display: inline-block;
+    padding: 0.25em;
+    margin: 0 0.375em;
+    border-radius: 3px;
+          
+}
+button, select {
+    border-radius: 5px;
+    padding: 0.5em;
+    outline: none;
+          
+}
+button.active {
+    background-color: #f80;
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid #fff;
+          
+}

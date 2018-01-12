@@ -1,54 +1,47 @@
-var myChart = new DojiChart.core.Chart(document.getElementById('my-chart'), {
+myChart = new DojiChart.core.Chart(document.getElementById('my-chart'), {
     width: 700,
     fieldMap: {
-        time: 'date',
+        time: 'time',
         open: 'open',
         high: 'high',
         low: 'low',
         close: 'close',
+        volume: 'volume'
     }
-    
 });
-
-var pricePanel = new DojiChart.panel.TimeValuePanel({
-    primaryLayer: new DojiChart.layer.CandleLayer(),
-    height: 200
-    
+candle_layer = new DojiChart.layer.CandleLayer({});
+price_chart_panel = new DojiChart.panel.TimeValuePanel({
+    primaryLayer: candle_layer,
+    height: 250,
+    grid: true    
 });
+sma_layer = new DojiChart.layer.indicator.SimpleMovingAverageLayer({
+    period: 5
+});
+price_chart_panel.addLayer(sma_layer);
 
-myChart.addComponent('price', pricePanel);
+myChart.addComponent("price", price_chart_panel);
 
-var priceData = []
-currencyPair = "BTC_XMR"
-endTime = Math.trunc(Date.now()/1000);
-startTime = endTime - 5*60*60;
-poloApi = "https://poloniex.com/public?command=returnChartData&currencyPair="+currencyPair+"&start="+startTime+"&end="+endTime+"&period=300"
-console.log(poloApi);
-function updatePriceData() {
-    $.get(poloApi, function (data){
-        var i;
-        priceData = data;
-        for(i = 0; i < priceData.length; i++) {
-            priceData[i] = priceData[i];
-            var t = new Date(priceData[i].date*1000);
-            priceData[i].date = t.toISOString();
-        }
-        console.log(priceData[i-1].date+": Updated priceData for "+currencyPair);
-    })
-}
+time_labels_panel = new DojiChart.panel.TimeLabelsPanel();
+myChart.addComponent("timelabels", time_labels_panel);
 
+volume_layer = new DojiChart.layer.indicator.VolumeLayer({
+    barColor: "#3377FF",
+    barWidth: 5
+});
+volume_chart_panel = new DojiChart.panel.TimeValuePanel({
+    height: 100,
+    primaryLayer: volume_layer    
+});
+myChart.addComponent("volume", volume_chart_panel);
+
+console.log(poloData);
 function updateChart(){
-    updatePriceData();
     var i;
-    for(i = 0; i < priceData.length; i++){
-        console.log(priceData[i].date + ": " +
-                    currencyPair + " low: " +
-                    priceData[i].low + " high:" +
-                    priceData[i].high);
+    for(i = 0; i < poloData.length; i++){
     }
-    myChart.loadData(priceData, "Poloniex.com: "+currencyPair, 'M5');    
+    myChart.loadData(poloData, "Poloniex.com", 'M5');    
 }
 
-$(document).ready(function(){
-    setInterval(updateChart, 5*1000);
-});
+updateChart();
+setInterval(updateChart, 1*60*1000);
