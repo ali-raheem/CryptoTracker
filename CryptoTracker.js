@@ -7,7 +7,8 @@ dojichart = new DojiChart.core.Chart(document.getElementById('my-chart'), {
         low: 'low',
         close: 'close',
         volume: 'volume'
-    }
+    },
+    crosshair: true
 });
 // Price
 var price_chart_panel = new DojiChart.panel.TimeValuePanel({

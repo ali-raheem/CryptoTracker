@@ -1,4 +1,4 @@
-# CryptoTracker v0.0.4 GPLv3
+# CryptoTracker v0.0.5 GPLv3
 
 Simple HTML5/Javascript cryptoportfolio tracker, pulls data from Poloniex.com public API and charts it.
 
