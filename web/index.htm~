@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CryptoTracker</title>
+    <link rel="stylesheet" href="dojichart.css"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="dojichart.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      Poloniex.com: BTC_XMR
+      <div class="dojichart" id="my-chart">
+        <div class="region" data-name="timelabels"></div>
+        <div class="region" data-name="price"></div>
+        <div class="region" data-name="volume"></div>
+        <div class="region" data-name="stochastic"></div>
+        <div class="region" data-name="rsi"></div>
+      </div>
+    </div>
+    <button id="btn-bak">Scroll back</button>
+    <button id="btn-fwd">Scroll forwards</button>
+    <script type="text/javascript" src="CryptoTracker.js"></script>
+  </body>
+</html>
