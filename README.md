@@ -2,6 +2,8 @@
 
 Simple HTML5/Javascript cryptoportfolio tracker, pulls data from Poloniex.com public API and charts it.
 
+![Screenshot](screenshot.png)
+
 # Installation and Running
 
 ```
